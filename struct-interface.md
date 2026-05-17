@@ -1,46 +1,111 @@
 # Latihan Golang — Struct & Interface
 
-Buat program sederhana dalam file `main.go` untuk mempelajari `struct` dan `interface`.
+Buat sebuah program sederhana menggunakan bahasa Go dalam satu file bernama `main.go` untuk mempelajari penggunaan `struct`, `method`, dan `interface`.
 
 ## Instruksi
 
-1. Buat interface bernama `Animal` yang memiliki method:
-   - `MakeSound()`
-   - `GetInfo() string`
+### 1. Buat Interface
 
-2. Buat dua struct:
-   - `Cat`
-   - `Dog`
+Buat interface bernama `Animal`.
 
-   Kedua struct memiliki field:
-   - `Name`
-   - `Age`
+Interface tersebut wajib memiliki 2 method:
 
-3. Implementasikan semua method dari interface `Animal` pada masing-masing struct.
+```go
+MakeSound()
+GetInfo() string
+```
 
-4. Untuk `Cat`:
-   - `MakeSound()` menampilkan `Meow~`
-   - `GetInfo()` mengembalikan informasi seperti:
-     ```text
-     Cat: Milo, 2 years old
-     ```
+Keterangan:
+- `MakeSound()` digunakan untuk menampilkan suara hewan
+- `GetInfo()` digunakan untuk mengembalikan informasi hewan dalam bentuk string
 
-5. Untuk `Dog`:
-   - `MakeSound()` menampilkan `Woof~`
-   - `GetInfo()` mengembalikan informasi seperti:
-     ```text
-     Dog: Bruno, 4 years old
-     ```
+---
 
-6. Buat function `ShowAnimal(animal Animal)` yang:
-   - menampilkan hasil `GetInfo()`
-   - menjalankan `MakeSound()`
-   - menampilkan garis pemisah
+### 2. Buat Struct
 
-7. Di dalam `main()`:
-   - buat object `Cat`
-   - buat object `Dog`
-   - panggil `ShowAnimal()` untuk masing-masing object
+Buat 2 struct berikut:
+
+#### Struct `Cat`
+
+Field yang harus dimiliki:
+- `Name`
+- `Age`
+
+#### Struct `Dog`
+
+Field yang harus dimiliki:
+- `Name`
+- `Age`
+
+---
+
+### 3. Implementasikan Method
+
+Setiap struct wajib mengimplementasikan seluruh method dari interface `Animal`.
+
+#### Untuk `Cat`
+
+- `MakeSound()` menampilkan:
+  ```text
+  Meow~
+  ```
+
+- `GetInfo()` mengembalikan string seperti:
+  ```text
+  Cat: Milo, 2 years old
+  ```
+
+---
+
+#### Untuk `Dog`
+
+- `MakeSound()` menampilkan:
+  ```text
+  Woof~
+  ```
+
+- `GetInfo()` mengembalikan string seperti:
+  ```text
+  Dog: Bruno, 4 years old
+  ```
+
+---
+
+### 4. Buat Function
+
+Buat function bernama:
+
+```go
+ShowAnimal(animal Animal)
+```
+
+Di dalam function tersebut:
+1. tampilkan hasil dari `GetInfo()`
+2. jalankan method `MakeSound()`
+3. tampilkan garis pemisah:
+   ```text
+   -------------------
+   ```
+
+---
+
+### 5. Implementasi di `main()`
+
+Di dalam function `main()` lakukan langkah berikut:
+
+1. Buat object `Cat`
+   - Name: `Milo`
+   - Age: `2`
+
+2. Buat object `Dog`
+   - Name: `Bruno`
+   - Age: `4`
+
+3. Panggil function:
+   ```go
+   ShowAnimal()
+   ```
+   untuk masing-masing object.
 
 ---
 
@@ -54,3 +119,27 @@ Age  = 2
 Dog:
 Name = Bruno
 Age  = 4
+```
+
+---
+
+# Contoh Output
+
+```text
+Cat: Milo, 2 years old
+Meow~
+-------------------
+Dog: Bruno, 4 years old
+Woof~
+-------------------
+```
+
+---
+
+# Rules
+
+- Semua kode hanya dalam file `main.go`
+- Gunakan package `fmt`
+- Tidak boleh menggunakan package lain
+- Gunakan method untuk menampilkan data
+- Jangan hardcode seluruh output langsung di `main()`

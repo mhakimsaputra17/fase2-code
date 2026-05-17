@@ -1,52 +1,23 @@
-# Database Assessment — Constraints & Relationships
-## PostgreSQL · Online Course System
+# Database Assessment — Basic Constraints
+## PostgreSQL
 
 Difficulty: Junior  
-Estimated Time: 15–25 menit
+Estimated Time: 10–15 menit
 
 ---
 
 # Scenario
 
-Tim backend sedang membuat database sederhana untuk platform online course.
+Tim backend sedang membuat database sederhana untuk sistem online course.
 
-Database harus memastikan:
-- data user valid
-- setiap course memiliki instructor
-- enrollment tidak duplicate
-- relasi antar tabel tetap konsisten
-
-Engineer sebelumnya sudah membuat starter schema,
-tetapi constraint belum ditambahkan.
+Agar data tetap aman dan konsisten, beberapa constraint perlu ditambahkan ke database.
 
 Tugas Anda:
-melengkapi constraint pada tabel berikut.
+lengkapi constraint pada tabel berikut.
 
 ---
 
-# Learning Goals
-
-Assessment ini mengukur:
-- understanding constraint types
-- relational integrity
-- foreign key usage
-- unique constraint usage
-- many-to-many awareness
-
----
-
-# Project Structure
-
-```txt
-database/
-└── schema.sql
-```
-
----
-
-# Existing Schema
-
-## schema.sql
+# Starter Schema
 
 ```sql
 CREATE TABLE users (
@@ -72,30 +43,27 @@ CREATE TABLE enrollments (
 
 # Tasks
 
-## 1. Users Table
-
+## users
 Tambahkan constraint agar:
-- setiap user memiliki identifier unik
+- id unique
 - name wajib diisi
 - email wajib diisi
 - email tidak boleh duplicate
 
 ---
 
-## 2. Courses Table
-
+## courses
 Tambahkan constraint agar:
-- setiap course wajib punya instructor
-- instructor harus valid user yang ada di tabel users
+- title wajib diisi
+- instructor_id wajib diisi
 
 ---
 
-## 3. Enrollments Table
-
+## enrollments
 Tambahkan constraint agar:
-- setiap enrollment wajib punya user
-- setiap enrollment wajib punya course
-- user tidak boleh enroll course yang sama lebih dari sekali
+- user_id wajib diisi
+- course_id wajib diisi
+- user tidak bisa enroll course yang sama dua kali
 
 ---
 
@@ -103,9 +71,7 @@ Tambahkan constraint agar:
 
 ---
 
-# Case 1 — Valid User
-
-Query:
+## Valid User
 
 ```sql
 INSERT INTO users(name, email)
@@ -114,14 +80,12 @@ VALUES ('Alice', 'alice@mail.com');
 
 Expected:
 ```txt
-INSERT berhasil
+success
 ```
 
 ---
 
-# Case 2 — Duplicate Email
-
-Query:
+## Duplicate Email
 
 ```sql
 INSERT INTO users(name, email)
@@ -130,30 +94,12 @@ VALUES ('Bob', 'alice@mail.com');
 
 Expected:
 ```txt
-ERROR duplicate data
+error duplicate email
 ```
 
 ---
 
-# Case 3 — Invalid Instructor
-
-Query:
-
-```sql
-INSERT INTO courses(title, instructor_id)
-VALUES ('Docker Basics', 999);
-```
-
-Expected:
-```txt
-ERROR invalid reference
-```
-
----
-
-# Case 4 — Duplicate Enrollment
-
-Query:
+## Duplicate Enrollment
 
 ```sql
 INSERT INTO enrollments(user_id, course_id)
@@ -165,7 +111,7 @@ VALUES (1, 1);
 
 Expected:
 ```txt
-ERROR duplicate enrollment
+error duplicate enrollment
 ```
 
 ---
@@ -173,40 +119,14 @@ ERROR duplicate enrollment
 # Rules
 
 - Gunakan PostgreSQL syntax
-- Constraint harus dibuat langsung di schema
-- Tidak boleh handle validation di application layer
-- Fokus pada database integrity
+- Fokus pada constraint database
+- Tidak perlu query SELECT/JOIN
 
 ---
 
-# Assessor Discussion Questions
+# Yang Dinilai
 
-Assessor mungkin akan bertanya:
-
-- Kenapa email perlu unique?
-- Apa fungsi foreign key?
-- Apa yang terjadi jika foreign key tidak digunakan?
-- Kenapa enrollments disebut bridge table?
-- Kenapa duplicate enrollment harus dicegah?
-
----
-
-# What Assessor Looks For
-
-- PRIMARY KEY understanding
-- FOREIGN KEY understanding
-- UNIQUE constraint usage
-- NOT NULL usage
-- relational thinking
-- data integrity awareness
-
----
-
-# Notes
-
-Peserta diperbolehkan:
-- menggunakan inline constraint
-- menggunakan CONSTRAINT naming
-- menggunakan composite UNIQUE
-
-Selama behavior schema sesuai requirement.
+- PRIMARY KEY
+- NOT NULL
+- UNIQUE
+- constraint understanding

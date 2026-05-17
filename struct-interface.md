@@ -109,6 +109,39 @@ Di dalam function `main()` lakukan langkah berikut:
 
 ---
 
+# Starter Code
+
+```go
+package main
+
+import "fmt"
+
+// TODO: Buat interface Animal
+
+// TODO: Buat struct Cat
+
+// TODO: Buat struct Dog
+
+// TODO: Implementasikan method untuk Cat
+
+// TODO: Implementasikan method untuk Dog
+
+// TODO: Buat function ShowAnimal()
+
+func main() {
+
+	// TODO: Buat object Cat
+
+	// TODO: Buat object Dog
+
+	// TODO: Panggil ShowAnimal()
+
+	fmt.Println("Program selesai")
+}
+```
+
+---
+
 # Contoh Input
 
 ```text
